@@ -915,6 +915,12 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_pfadd, 0, 0, 2)
     ZEND_ARG_ARRAY_INFO(0, elements, 0)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_pfexist, 0, 0, 2)
+    ZEND_ARG_INFO(0, key)
+    ZEND_ARG_ARRAY_INFO(0, elements, 0)
+ZEND_END_ARG_INFO()
+
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_pfmerge, 0, 0, 2)
     ZEND_ARG_INFO(0, dstkey)
     ZEND_ARG_ARRAY_INFO(0, keys, 0)

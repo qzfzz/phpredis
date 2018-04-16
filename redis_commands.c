@@ -1821,6 +1821,15 @@ int redis_pfadd_cmd(INTERNAL_FUNCTION_PARAMETERS, RedisSock *redis_sock,
         "PFADD", sizeof("PFADD")-1, 0, cmd, cmd_len, slot);
 }
 
+/* PFEXIST */
+int redis_pfexist_cmd(INTERNAL_FUNCTION_PARAMETERS, RedisSock *redis_sock,
+                    char **cmd, int *cmd_len, short *slot, void **ctx)
+{
+    return redis_gen_pf_cmd(INTERNAL_FUNCTION_PARAM_PASSTHRU, redis_sock,
+        "PFEXIST", sizeof("PFEXIST")-1, 0, cmd, cmd_len, slot);
+}
+
+
 /* PFMERGE */
 int redis_pfmerge_cmd(INTERNAL_FUNCTION_PARAMETERS, RedisSock *redis_sock,
                       char **cmd, int *cmd_len, short *slot, void **ctx)
@@ -2877,6 +2886,14 @@ int redis_migrate_cmd(INTERNAL_FUNCTION_PARAMETERS, RedisSock *redis_sock,
     *cmd = cmdstr.c;
     *cmd_len = cmdstr.len;
     return SUCCESS;
+}
+
+/* EXISTS */
+int redis_exists_cmd(INTERNAL_FUNCTION_PARAMETERS, RedisSock *redis_sock,
+                     char **cmd, int *cmd_len, short *slot, void **ctx)
+{
+    return gen_varkey_cmd(INTERNAL_FUNCTION_PARAM_PASSTHRU, redis_sock,
+        "EXISTS", sizeof("EXISTS") - 1, 0, 0, cmd, cmd_len, slot);
 }
 
 /* DEL */

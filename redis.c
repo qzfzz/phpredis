@@ -331,6 +331,7 @@ static zend_function_entry redis_functions[] = {
      PHP_ME(Redis, pexpire, arginfo_key_timestamp, ZEND_ACC_PUBLIC)
      PHP_ME(Redis, pexpireAt, arginfo_key_timestamp, ZEND_ACC_PUBLIC)
      PHP_ME(Redis, pfadd, arginfo_pfadd, ZEND_ACC_PUBLIC)
+     PHP_ME(Redis, pfexist, arginfo_pfexist, ZEND_ACC_PUBLIC)
      PHP_ME(Redis, pfcount, arginfo_key, ZEND_ACC_PUBLIC)
      PHP_ME(Redis, pfmerge, arginfo_pfmerge, ZEND_ACC_PUBLIC)
      PHP_ME(Redis, ping, arginfo_void, ZEND_ACC_PUBLIC)
@@ -1169,7 +1170,7 @@ PHP_METHOD(Redis, getMultiple)
  */
 PHP_METHOD(Redis, exists)
 {
-    REDIS_PROCESS_KW_CMD("EXISTS", redis_key_cmd, redis_1_response);
+    REDIS_PROCESS_CMD(exists, redis_long_response);
 }
 /* }}} */
 
@@ -3519,6 +3520,11 @@ PHP_METHOD(Redis, zscan) {
 /* {{{ proto Redis::pfAdd(string key, array elements) }}} */
 PHP_METHOD(Redis, pfadd) {
     REDIS_PROCESS_CMD(pfadd, redis_long_response);
+}
+
+/* {{{ proto Redis::pfExist(string key, array elements) }}} */
+PHP_METHOD(Redis, pfexist) {
+    REDIS_PROCESS_CMD(pfexist, redis_long_response);
 }
 
 /* {{{ proto Redis::pfCount(string key) }}}*/

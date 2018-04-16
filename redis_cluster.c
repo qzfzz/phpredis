@@ -192,6 +192,7 @@ zend_function_entry redis_cluster_functions[] = {
     PHP_ME(RedisCluster, pexpire, arginfo_key_timestamp, ZEND_ACC_PUBLIC)
     PHP_ME(RedisCluster, pexpireat, arginfo_key_timestamp, ZEND_ACC_PUBLIC)
     PHP_ME(RedisCluster, pfadd, arginfo_pfadd, ZEND_ACC_PUBLIC)
+    PHP_ME(RedisCluster, pfexist, arginfo_pfexist, ZEND_ACC_PUBLIC)
     PHP_ME(RedisCluster, pfcount, arginfo_key, ZEND_ACC_PUBLIC)
     PHP_ME(RedisCluster, pfmerge, arginfo_pfmerge, ZEND_ACC_PUBLIC)
     PHP_ME(RedisCluster, ping, arginfo_key_or_address, ZEND_ACC_PUBLIC)
@@ -1063,7 +1064,7 @@ PHP_METHOD(RedisCluster, getset) {
 
 /* {{{ proto int RedisCluster::exists(string key) */
 PHP_METHOD(RedisCluster, exists) {
-    CLUSTER_PROCESS_KW_CMD("EXISTS", redis_key_cmd, cluster_1_resp, 1);
+    CLUSTER_PROCESS_CMD(exists, cluster_long_resp, 1);
 }
 /* }}} */
 
@@ -1671,6 +1672,13 @@ PHP_METHOD(RedisCluster, pfcount) {
     CLUSTER_PROCESS_CMD(pfcount, cluster_long_resp, 1);
 }
 /* }}} */
+
+/* {{{ proto bool RedisCluster::pfexist(string key, array vals) */
+PHP_METHOD(RedisCluster, pfexist) {
+    CLUSTER_PROCESS_CMD(pfexist, cluster_long_resp, 1);
+}
+/* }}} */
+
 
 /* {{{ proto bool RedisCluster::pfadd(string key, array vals) */
 PHP_METHOD(RedisCluster, pfadd) {

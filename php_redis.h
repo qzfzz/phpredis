@@ -219,6 +219,7 @@ PHP_METHOD(Redis, zscan);
 
 /* HyperLogLog commands */
 PHP_METHOD(Redis, pfadd);
+PHP_METHOD(Redis, pfexist);
 PHP_METHOD(Redis, pfcount);
 PHP_METHOD(Redis, pfmerge);
 
